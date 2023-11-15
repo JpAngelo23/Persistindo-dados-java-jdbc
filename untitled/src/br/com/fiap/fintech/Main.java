@@ -1,12 +1,8 @@
 package br.com.fiap.fintech;
 
-import br.com.fiap.fintech.DAO.CCorrenteDAO;
-import br.com.fiap.fintech.DAO.InstFinancDAO;
-import br.com.fiap.fintech.DAO.PessoaDAO;
+import br.com.fiap.fintech.DAO.*;
 import br.com.fiap.fintech.DataBase.Conexao;
-import br.com.fiap.fintech.model.CCorrente;
-import br.com.fiap.fintech.model.InstFinanc;
-import br.com.fiap.fintech.model.Pessoa;
+import br.com.fiap.fintech.model.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,77 +12,89 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
 
-        //Criando o objeto (instanciando) ContaDAO, para abrir a conexão e chamar os métodos que serão usados para persistência dos dados
-        //CCorrenteDAO contaDao = new CCorrenteDAO(Conexao.abrirConexao());
-
-
-//        CCorrente contaJP = new CCorrente();
-//        contaJP.setTxJuros(4.5);
-//        contaJP.setTxIof(0.3);
-//        contaJP.setTxIr(0.4);
-//        contaDao.gravarConta(contaJP);
-
         InstFinanc brad = new InstFinanc();
         brad.setCnpj(12345678911111L);
         brad.setNome("Bradesco");
 
         InstFinancDAO instFinanceira = new InstFinancDAO(Conexao.abrirConexao());
-        //instFinanceira.gravarInstFinanceira(brad);
-        //instFinanceira.excluirInstFinanceira(12345678911111L);
+
+        instFinanceira.gravarInstFinanceira(brad);
+//        instFinanceira.excluirInstFinanceira(12345678911111L);
 
 
 
         Pessoa jp = new Pessoa();
         jp.setCdPessoa(1234567891L);
         jp.setNomePessoa("João Paulo");
-        jp.setTel(11987219821L);
-        jp.setCep("05866020");
-        jp.setComplemento("Bairro: Jardim Mariane");
+        jp.setTel(11911223344L);
+        jp.setCep("05868020");
+        jp.setComplemento("Bairro: Jardim Das flores");
+
+        Pessoa b3 = new Pessoa();
+        b3.setCdPessoa(2023);
+        b3.setNomePessoa("Bolsa de Valores de SP");
+        b3.setTel(1144611070L);
+        b3.setCep("05866090");
+        b3.setComplemento("centro");
 
         PessoaDAO pessoaDao = new PessoaDAO(Conexao.abrirConexao());
 
-        //pessoaDao.gravarPessoa(jp);
-        pessoaDao.excluirPessoa(jp);
-        instFinanceira.excluirInstFinanceira(12345678911111L);
+        pessoaDao.gravarPessoa(jp);
+        pessoaDao.gravarPessoa(b3);
+//        pessoaDao.excluirPessoa(jp);
+//        pessoaDao.excluirPessoa(b3);
 
 
 
+        Cliente joao = new Cliente();
+        joao.setCdPessoa(1234567891L);
+        joao.setCdCliente(12345);
+        joao.setDsConta("conta do joao");
+        joao.setDsSenha("Password");
+        joao.setEmail("jp.angelo23@gmail.com");
+
+        Cliente clienteB3 = new Cliente();
+        clienteB3.setCdPessoa(2023);
+        clienteB3.setCdCliente(1990);
+        clienteB3.setDsConta("conta da BmF Bovespa");
+        clienteB3.setDsSenha("PASSWORD!!");
+        clienteB3.setEmail("b3@bovespa.com");
 
 
-//
-//        CCorrente contaSuricato = new CCorrente();
-//        contaSuricato.setTxJuros(5.5);
-//        contaSuricato.setTxIof(1.5);
-//        contaSuricato.setTxIr(0.3);
-//        contaDao.gravarConta(contaSuricato);
-//
-//        CCorrente contaBernardo = new CCorrente(2.5, 1.0, 0.3);
-//        contaDao.gravarConta(contaBernardo);
-//        CCorrente contaKauan = new CCorrente(2.5, 1.0, 0.3);
-//        contaDao.gravarConta(contaKauan);
+        ClienteDAO clienteConexao = new ClienteDAO(Conexao.abrirConexao());
 
-        //contaDao.excluirConta(135);
-
-
-
-
-
-        //contaDao.excluirConta(115);
-        //contaDao.excluirConta(125);
-
-       // contaDao.atualizarTxJuros(145, 9.9);
+        clienteConexao.adicionarCliente(joao);
+        clienteConexao.adicionarCliente(clienteB3);
+//        clienteConexao.excluirCliente(12345);
+//        clienteConexao.excluirCliente(1990);
 
 
 
+        PessoaFisica joaoPF = new PessoaFisica();
+        joaoPF.setCdCliente(12345);
+        joaoPF.setCpf(40235789625L);
+        joaoPF.setNrRg("0800");
+
+        PessoaFisicaDAO conexaoPF = new PessoaFisicaDAO(Conexao.abrirConexao());
+
+        conexaoPF.adicionarPf(joaoPF);
+//        conexaoPF.excluirPF(12345L);
 
 
 
-//        contaDao.excluirConta(105);
+        PessoaJuridica b3PJ = new PessoaJuridica();
+        b3PJ.setCdCliente(1990);
+        b3PJ.setCnpj(106223000150L);
+        b3PJ.setDsInscricaoMunic("2000SP");
 
+        PessoaJuridicaDAO conexaoPJ = new PessoaJuridicaDAO(Conexao.abrirConexao());
 
+        conexaoPJ.adicionaPj(b3PJ);
+//        conexaoPJ.excluirPJ(1990);
 
 
 
 
     } //fim main
-} //fim
+
+} //fim da Classe.

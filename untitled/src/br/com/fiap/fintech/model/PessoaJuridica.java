@@ -2,37 +2,27 @@ package br.com.fiap.fintech.model;
 
 public class PessoaJuridica extends Cliente {
 
-    private int cdCliente;
-    private long cdPessoa;
-    private int cnpj;
+    private long cdCliente;
+    private long cnpj;
     private String dsInscricaoMunic;
 
 
   //---------------------------------
   // Getters and Setters:
 
-
-    public int getCdCliente() {
+    public long getCdCliente() {
         return cdCliente;
     }
 
-    public void setCdCliente(int cdCliente) {
+    public void setCdCliente(long cdCliente) {
         this.cdCliente = cdCliente;
     }
 
-    public long getCdPessoa() {
-        return cdPessoa;
-    }
-
-    public void setCdPessoa(long cdPessoa) {
-        this.cdPessoa = cdPessoa;
-    }
-
-    public int getCnpj() {
+    public long getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(long cnpj) {
         this.cnpj = cnpj;
     }
 

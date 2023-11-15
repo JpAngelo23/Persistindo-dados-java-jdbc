@@ -2,20 +2,17 @@ package br.com.fiap.fintech.model;
 
 public class PessoaFisica extends  Cliente {
 
-    private int cdCliente;
+    private long cdCliente;
     private long cdPessoa;
-    private int cpf;
+    private long cpf;
     private String nrRg;
 
-
 // -----------------------------------------------------
-
-
-    public int getCdCliente() {
+    public long getCdCliente() {
         return cdCliente;
     }
 
-    public void setCdCliente(int cdCliente) {
+    public void setCdCliente(long cdCliente) {
         this.cdCliente = cdCliente;
     }
 
@@ -27,11 +24,11 @@ public class PessoaFisica extends  Cliente {
         this.cdPessoa = cdPessoa;
     }
 
-    public int getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
@@ -42,4 +39,4 @@ public class PessoaFisica extends  Cliente {
     public void setNrRg(String nrRg) {
         this.nrRg = nrRg;
     }
-}
+} // FIM da classe

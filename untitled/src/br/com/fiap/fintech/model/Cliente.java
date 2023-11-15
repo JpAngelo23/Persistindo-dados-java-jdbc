@@ -2,7 +2,7 @@ package br.com.fiap.fintech.model;
 
 public class Cliente extends Pessoa {
 
-    private int cdCliente;
+    private long cdCliente;
     private long cdPessoa;
     private String dsSenha;
     private String dsConta;
@@ -25,11 +25,11 @@ public class Cliente extends Pessoa {
 
 //------------------------------------------------------------------------
     // Métodos Getters and Setters:
-    public int getCdCliente() {
+    public long getCdCliente() {
         return cdCliente;
     }
 
-    public void setCdCliente(int cdCliente) {
+    public void setCdCliente(long cdCliente) {
         this.cdCliente = cdCliente;
     }
 
