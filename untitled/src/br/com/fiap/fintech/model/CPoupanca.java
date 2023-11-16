@@ -3,7 +3,7 @@ package br.com.fiap.fintech.model;
 public class CPoupanca extends Conta {
 
     private int cdConta;
-    private double txJuros;
+    private double txRendimento;
     private double txIof;
     private double txIr;
 
@@ -21,12 +21,12 @@ public class CPoupanca extends Conta {
         this.cdConta = cdConta;
     }
 
-    public double getTxJuros() {
-        return txJuros;
+    public double getTxRendimento() {
+        return txRendimento;
     }
 
-    public void setTxJuros(double txJuros) {
-        this.txJuros = txJuros;
+    public void setTxRendimento(double txRendimento) {
+        this.txRendimento = txRendimento;
     }
 
     public double getTxIof() {

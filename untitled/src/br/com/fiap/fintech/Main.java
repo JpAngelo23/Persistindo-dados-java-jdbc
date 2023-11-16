@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-public class Main {
+    public class Main {
 
     public static void main(String[] args) throws SQLException {
 
@@ -16,9 +16,9 @@ public class Main {
         brad.setCnpj(12345678911111L);
         brad.setNome("Bradesco");
 
-//        InstFinancDAO instFinanceira = new InstFinancDAO(Conexao.abrirConexao());
+        InstFinancDAO instFinanceira = new InstFinancDAO(Conexao.abrirConexao());
 
-//        instFinanceira.gravarInstFinanceira(brad);
+        instFinanceira.gravarInstFinanceira(brad);
 //        instFinanceira.excluirInstFinanceira(12345678911111L);
 
 
@@ -37,10 +37,10 @@ public class Main {
         b3.setCep("05866090");
         b3.setComplemento("centro");
 
-//        PessoaDAO pessoaDao = new PessoaDAO(Conexao.abrirConexao());
+        PessoaDAO pessoaDao = new PessoaDAO(Conexao.abrirConexao());
 
-//        pessoaDao.gravarPessoa(jp);
-//        pessoaDao.gravarPessoa(b3);
+        pessoaDao.gravarPessoa(jp);
+        pessoaDao.gravarPessoa(b3);
 //        pessoaDao.excluirPessoa(jp);
 //        pessoaDao.excluirPessoa(b3);
 
@@ -59,10 +59,10 @@ public class Main {
         clienteB3.setDsSenha("PASSWORD!!");
         clienteB3.setEmail("b3@bovespa.com");
 
-//        ClienteDAO clienteConexao = new ClienteDAO(Conexao.abrirConexao());
+        ClienteDAO clienteConexao = new ClienteDAO(Conexao.abrirConexao());
 
-//        clienteConexao.adicionarCliente(joao);
-//        clienteConexao.adicionarCliente(clienteB3);
+        clienteConexao.adicionarCliente(joao);
+        clienteConexao.adicionarCliente(clienteB3);
 //        clienteConexao.excluirCliente(12345);
 //        clienteConexao.excluirCliente(1990);
 
@@ -72,9 +72,9 @@ public class Main {
         joaoPF.setCpf(40235789625L);
         joaoPF.setNrRg("0800");
 
-//        PessoaFisicaDAO conexaoPF = new PessoaFisicaDAO(Conexao.abrirConexao());
+        PessoaFisicaDAO conexaoPF = new PessoaFisicaDAO(Conexao.abrirConexao());
 
-//        conexaoPF.adicionarPf(joaoPF);
+        conexaoPF.adicionarPf(joaoPF);
 //        conexaoPF.excluirPF(12345L);
 
 
@@ -83,30 +83,60 @@ public class Main {
         b3PJ.setCnpj(106223000150L);
         b3PJ.setDsInscricaoMunic("2000SP");
 
-//        PessoaJuridicaDAO conexaoPJ = new PessoaJuridicaDAO(Conexao.abrirConexao());
+        PessoaJuridicaDAO conexaoPJ = new PessoaJuridicaDAO(Conexao.abrirConexao());
 
-//        conexaoPJ.adicionaPj(b3PJ);
+        conexaoPJ.adicionaPj(b3PJ);
 //        conexaoPJ.excluirPJ(1990);
+
+
+        Conta contaDoJp = new Conta();
+        contaDoJp.setCdConta(505050);
+        contaDoJp.setNrConta("633389");
+        contaDoJp.setCdAgencia(2856);
+        contaDoJp.setCnpjInstFinanc(12345678911111L);
+        contaDoJp.setCdCliente(12345L);
+        contaDoJp.setValorSaldo(1500.50);
+
+        Conta contaDaB3 = new Conta();
+        contaDaB3.setCdConta(707070);
+        contaDaB3.setNrConta("1500x");
+        contaDaB3.setCdAgencia(2856);
+        contaDaB3.setCnpjInstFinanc(12345678911111L);
+        contaDaB3.setCdCliente(1990L);
+        contaDaB3.setValorSaldo(100.90);
+
+
+        ContaDAO conexaoContaDAO = new ContaDAO(Conexao.abrirConexao());
+
+        conexaoContaDAO.cadastrarConta(contaDoJp);
+        conexaoContaDAO.cadastrarConta(contaDaB3);
+//        conexaoContaDAO.excluirConta(505050);
+//        conexaoContaDAO.excluirConta(707070);
 
         //---------------------------------------------------------------------------------------------------------------------
 // Excluindo os dados do Data Base:
 
-        PessoaJuridicaDAO conexaoPJ = new PessoaJuridicaDAO(Conexao.abrirConexao());
-        conexaoPJ.excluirPJ(1990);
+//        ContaDAO conexaoContaDAO = new ContaDAO(Conexao.abrirConexao());
+//        conexaoContaDAO.excluirConta(505050);
+//        conexaoContaDAO.excluirConta(707070);
+//
+//        PessoaJuridicaDAO conexaoPJ = new PessoaJuridicaDAO(Conexao.abrirConexao());
+//        conexaoPJ.excluirPJ(1990);
+//
+//        PessoaFisicaDAO conexaoPF = new PessoaFisicaDAO(Conexao.abrirConexao());
+//        conexaoPF.excluirPF(12345L);
+//
+//        ClienteDAO clienteConexao = new ClienteDAO(Conexao.abrirConexao());
+//        clienteConexao.excluirCliente(12345);
+//        clienteConexao.excluirCliente(1990);
+//
+//        PessoaDAO pessoaDao = new PessoaDAO(Conexao.abrirConexao());
+//        pessoaDao.excluirPessoa(jp);
+//        pessoaDao.excluirPessoa(b3);
+//
+//        InstFinancDAO instFinanceira = new InstFinancDAO(Conexao.abrirConexao());
+//        instFinanceira.excluirInstFinanceira(12345678911111L);
 
-        PessoaFisicaDAO conexaoPF = new PessoaFisicaDAO(Conexao.abrirConexao());
-        conexaoPF.excluirPF(12345L);
-
-        ClienteDAO clienteConexao = new ClienteDAO(Conexao.abrirConexao());
-        clienteConexao.excluirCliente(12345);
-        clienteConexao.excluirCliente(1990);
-
-        PessoaDAO pessoaDao = new PessoaDAO(Conexao.abrirConexao());
-        pessoaDao.excluirPessoa(jp);
-        pessoaDao.excluirPessoa(b3);
-
-        InstFinancDAO instFinanceira = new InstFinancDAO(Conexao.abrirConexao());
-        instFinanceira.excluirInstFinanceira(12345678911111L);
 //---------------------------------------------------------------------------------------------------------------------
 
     } //fim main
