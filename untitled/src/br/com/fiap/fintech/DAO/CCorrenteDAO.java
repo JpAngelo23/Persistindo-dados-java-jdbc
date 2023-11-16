@@ -14,99 +14,72 @@ public class CCorrenteDAO {
         this.conexao = conexao;
     }
 
-
-
     public void gravarConta(CCorrente conta) {
-        String sql = "INSERT INTO T_CCORRENTE (CD_CONTA, TX_JUROS, TX_IOF, TX_IR)"
-                + "VALUES (SEQUENCE1.NEXTVAL, ?, ?, ?)";
+        String sql = "INSERT INTO T_CCORRENTE (T_CONTA_CD_CONTA, TX_JUROS, TX_IOF, TX_IR) VALUES (?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
-            ps.setDouble(1, conta.getTxJuros());
-
-            ps.setDouble(2, conta.getTxIof());
-            ps.setDouble(3, conta.getTxIr());
+            ps.setInt(1, conta.getCdConta());
+            ps.setDouble(2, conta.getTxJuros());
+            ps.setDouble(3, conta.getTxIof());
+            ps.setDouble(4, conta.getTxIr());
             ps.execute();
             ps.close();
             System.out.println("Conta gravada com sucesso!");
-            conexao.close();
-            System.out.println("Conexão Encerrada.");
         } catch (SQLException e) {
-            System.out.println("Deu Ruim.");
+            System.out.println("Erro ao gravar a conta..");
             e.printStackTrace();
         }
-
     }
-    //-------------------------------------------------------------------
 
-    public boolean excluirConta(int idConta) {
+    // Métodos adicionais para excluir e atualizar
+
+    // Método para excluir uma conta corrente
+    public boolean excluirContaCorrente(int cdConta) {
         String sql = "DELETE FROM T_CCORRENTE WHERE T_CONTA_CD_CONTA = ?";
-        PreparedStatement ps = null;
 
-        try {
-            ps = conexao.prepareStatement(sql);
-            ps.setInt(1, idConta);
+        try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+            ps.setInt(1, cdConta);
             int rowsAffected = ps.executeUpdate();
-
             return rowsAffected > 0;
         } catch (SQLException e) {
-            System.out.println("Erro ao excluir conta.");
+            System.out.println("Erro ao excluir conta corrente.");
             e.printStackTrace();
             return false;
-        } finally {
-            try {
-                if (ps != null && !ps.isClosed()) {
-                    ps.close();
-                    System.out.println("Conta Excluída com sucesso.");
-                }
-                // Não feche a conexão aqui se pretender reusá-la
-                conexao.close();
-                // Conexões são normalmente fechadas fora do DAO, ou usando try-with-resources
-            } catch (SQLException ex) {
-                System.out.println("Erro ao fechar recursos.");
-                ex.printStackTrace();
-            }
         }
     }
 
-    public boolean atualizarTxJuros(int idConta, double novoTxJuros) {
-        return atualizarCampoConta(idConta, "TX_JUROS", novoTxJuros);
+    // Método para atualizar a taxa de juros de uma conta corrente
+    public boolean atualizarTxJuros(int cdConta, double novoTxJuros) {
+        return atualizarCampoContaCorrente(cdConta, "TX_JUROS", novoTxJuros);
     }
 
-    public boolean atualizarTxIof(int idConta, double novoTxIof) {
-        return atualizarCampoConta(idConta, "TX_IOF", novoTxIof);
+    // Método para atualizar a taxa de IOF de uma conta corrente
+    public boolean atualizarTxIof(int cdConta, double novoTxIof) {
+        return atualizarCampoContaCorrente(cdConta, "TX_IOF", novoTxIof);
     }
 
-    public boolean atualizarTxIr(int idConta, double novoTxIr) {
-        return atualizarCampoConta(idConta, "TX_IR", novoTxIr);
+    // Método para atualizar a taxa de IR de uma conta corrente
+    public boolean atualizarTxIr(int cdConta, double novoTxIr) {
+        return atualizarCampoContaCorrente(cdConta, "TX_IR", novoTxIr);
     }
 
-    private boolean atualizarCampoConta(int idConta, String nomeCampo, double novoValor) {
+    // Método genérico para atualizar campos de uma conta corrente
+    private boolean atualizarCampoContaCorrente(int cdConta, String nomeCampo, double novoValor) {
         String sql = "UPDATE T_CCORRENTE SET " + nomeCampo + " = ? WHERE T_CONTA_CD_CONTA = ?";
-        PreparedStatement ps = null;
 
-        try {
-            ps = conexao.prepareStatement(sql);
+        try (PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setDouble(1, novoValor);
-            ps.setInt(2, idConta);
+            ps.setInt(2, cdConta);
 
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
-            System.out.println("Erro ao atualizar " + nomeCampo + ".");
+            System.out.println("Erro ao atualizar " + nomeCampo + " da conta corrente.");
             e.printStackTrace();
             return false;
-        } finally {
-            try {
-                if (ps != null && !ps.isClosed()) {
-                    ps.close();
-                }
-                // A conexão não é fechada aqui, pois pode ser usada novamente
-            } catch (SQLException ex) {
-                System.out.println("Erro ao fechar PreparedStatement.");
-                ex.printStackTrace();
-            }
         }
     }
+} // Fim da Classe.
 
-}
+

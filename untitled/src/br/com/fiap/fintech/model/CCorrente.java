@@ -1,8 +1,7 @@
 package br.com.fiap.fintech.model;
 
-public class CCorrente extends  Conta {
+public class CCorrente extends Conta {
 
-    private int cdConta;
     private double txJuros;
     private double txIof;
     private double txIr;
@@ -16,16 +15,8 @@ public class CCorrente extends  Conta {
         this.txIr = txIr;
     }
 
-    //------------------------------------------------------------------------
-    // Métodos Getters and Setters:
+    // Métodos Getters and Setters (removendo os herdados de Conta)
 
-    public int getCdConta() {
-        return cdConta;
-    }
-
-    public void setCdConta(int cdConta) {
-        this.cdConta = cdConta;
-    }
 
     public double getTxJuros() {
         return txJuros;
@@ -51,3 +42,4 @@ public class CCorrente extends  Conta {
         this.txIr = txIr;
     }
 }
+

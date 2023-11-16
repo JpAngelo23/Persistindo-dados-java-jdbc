@@ -4,7 +4,7 @@ public class Movimentacao {
 
     private int cdMovimentacao;
     private int cdConta;
-    private int cdCliente;
+    private long cdCliente;
     private String dsMovimentacao;
     private double valorMovimentacao;
     private String categoria;
@@ -14,7 +14,6 @@ public class Movimentacao {
 
     //------------------------------------------------------------------------
     // Métodos Getters and Setters:
-
 
     public int getCdMovimentacao() {
         return cdMovimentacao;
@@ -32,11 +31,11 @@ public class Movimentacao {
         this.cdConta = cdConta;
     }
 
-    public int getCdCliente() {
+    public long getCdCliente() {
         return cdCliente;
     }
 
-    public void setCdCliente(int cdCliente) {
+    public void setCdCliente(long cdCliente) {
         this.cdCliente = cdCliente;
     }
 

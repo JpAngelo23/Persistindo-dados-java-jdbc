@@ -3,17 +3,23 @@ package br.com.fiap.fintech.model;
 public class Conta {
 
     private int cdConta;
-    private int instFinanc;
-    private int cdClientePF;
-    private int cdClientePJ;
+    private long cnpjInstFinanc;
+    private long cdCliente;
     private int cdAgencia;
     private String nrConta;
     private double valorSaldo;
-    private int cdMovimentacao;
 
-    //------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------------------
     // Métodos Getters and Setters:
 
+
+    public long getCdCliente() {
+        return cdCliente;
+    }
+
+    public void setCdCliente(long cdCliente) {
+        this.cdCliente = cdCliente;
+    }
 
     public int getCdConta() {
         return cdConta;
@@ -23,29 +29,14 @@ public class Conta {
         this.cdConta = cdConta;
     }
 
-    public int getInstFinanc() {
-        return instFinanc;
+    public long getCnpjInstFinanc() {
+        return cnpjInstFinanc;
     }
 
-    public void setInstFinanc(int instFinanc) {
-        this.instFinanc = instFinanc;
+    public void setCnpjInstFinanc(long cnpjInstFinanc) {
+        this.cnpjInstFinanc = cnpjInstFinanc;
     }
 
-    public int getCdClientePF() {
-        return cdClientePF;
-    }
-
-    public void setCdClientePF(int cdClientePF) {
-        this.cdClientePF = cdClientePF;
-    }
-
-    public int getCdClientePJ() {
-        return cdClientePJ;
-    }
-
-    public void setCdClientePJ(int cdClientePJ) {
-        this.cdClientePJ = cdClientePJ;
-    }
 
     public int getCdAgencia() {
         return cdAgencia;
@@ -71,11 +62,4 @@ public class Conta {
         this.valorSaldo = valorSaldo;
     }
 
-    public int getCdMovimentacao() {
-        return cdMovimentacao;
-    }
-
-    public void setCdMovimentacao(int cdMovimentacao) {
-        this.cdMovimentacao = cdMovimentacao;
-    }
 }

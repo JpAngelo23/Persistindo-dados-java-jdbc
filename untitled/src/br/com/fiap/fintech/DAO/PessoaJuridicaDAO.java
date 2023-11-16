@@ -75,7 +75,7 @@ public class PessoaJuridicaDAO {
 
     public void excluirPJ(long cdCliente) throws SQLException {
         // Código SQL para excluir uma Pessoa Jurídica (PJ) com base no CD_CLIENTE
-        String sqlExcluiPJ = "DELETE FROM T_PF WHERE CD_CLIENTE = ?";
+        String sqlExcluiPJ = "DELETE FROM T_PJ WHERE CD_CLIENTE = ?";
 
         try (PreparedStatement psExcluiPJ = conexao.prepareStatement(sqlExcluiPJ)) {
             // Configura o CD_CLIENTE para a exclusão
