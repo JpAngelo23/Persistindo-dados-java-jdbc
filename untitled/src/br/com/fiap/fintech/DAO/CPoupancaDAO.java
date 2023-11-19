@@ -15,7 +15,8 @@ public class CPoupancaDAO {
     }
 
     public void cadastrarContaPoupanca(CPoupanca conta) {
-        String sql = "INSERT INTO T_CPOUPANCA (T_CONTA_CD_CONTA, TX_RENDIMENTOS) VALUES (?, ?)";
+        String sql = "INSERT INTO T_CPOUPANCA (CD_CONTA, TX_RENDIMENTOS) VALUES (?, ?)";
+
 
         try (PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setInt(1, conta.getCdConta());
@@ -29,7 +30,7 @@ public class CPoupancaDAO {
     }
 
     public boolean excluirContaPoupanca(int cdConta) {
-        String sql = "DELETE FROM T_CPOUPANCA WHERE T_CONTA_CD_CONTA = ?";
+        String sql = "DELETE FROM T_CPOUPANCA WHERE CD_CONTA = ?";
 
         try (PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setInt(1, cdConta);
@@ -43,11 +44,11 @@ public class CPoupancaDAO {
     }
 
     public boolean atualizarTxRendimento(int cdConta, double novoTxRendimento) {
-        return atualizarCampoContaPoupanca(cdConta, "TX_RENDIMENTO", novoTxRendimento);
+        return atualizarCampoContaPoupanca(cdConta, "TX_RENDIMENTOS", novoTxRendimento);
     }
 
     private boolean atualizarCampoContaPoupanca(int cdConta, String nomeCampo, double novoValor) {
-        String sql = "UPDATE T_CPOUPANCA SET " + nomeCampo + " = ? WHERE T_CONTA_CD_CONTA = ?";
+        String sql = "UPDATE T_CPOUPANCA SET " + nomeCampo + " = ? WHERE CD_CONTA = ?";
 
         try (PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setDouble(1, novoValor);

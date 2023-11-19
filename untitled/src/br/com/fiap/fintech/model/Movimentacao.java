@@ -8,7 +8,7 @@ public class Movimentacao {
     private String dsMovimentacao;
     private double valorMovimentacao;
     private String categoria;
-    private int data;
+    public String data;
     private String recorrencia;
 
 
@@ -63,11 +63,11 @@ public class Movimentacao {
         this.categoria = categoria;
     }
 
-    public int getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(int data) {
+    public void setData(String data) {
         this.data = data;
     }
 

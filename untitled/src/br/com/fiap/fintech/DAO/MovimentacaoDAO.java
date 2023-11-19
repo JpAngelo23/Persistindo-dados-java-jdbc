@@ -43,7 +43,7 @@ public class MovimentacaoDAO {
             psInsereMovimentacao.setString(3, movimentacao.getDsMovimentacao());
             psInsereMovimentacao.setDouble(4, movimentacao.getValorMovimentacao());
             psInsereMovimentacao.setString(5, movimentacao.getCategoria());
-            psInsereMovimentacao.setInt(6, movimentacao.getData());
+            psInsereMovimentacao.setString(6, movimentacao.getData());
             psInsereMovimentacao.setString(7, movimentacao.getRecorrencia());
 
             int affectedRows = psInsereMovimentacao.executeUpdate();

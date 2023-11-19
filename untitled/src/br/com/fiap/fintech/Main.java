@@ -113,9 +113,74 @@ import java.sql.SQLException;
 //        conexaoContaDAO.excluirConta(505050);
 //        conexaoContaDAO.excluirConta(707070);
 
+
+        CPoupanca poupancaB3 = new CPoupanca();
+        poupancaB3.setCdConta(707070);
+        poupancaB3.setTxRendimento(1.23);
+
+        CPoupancaDAO conexaoCpb3 = new CPoupancaDAO(Conexao.abrirConexao());
+
+        conexaoCpb3.cadastrarContaPoupanca(poupancaB3);
+//        conexaoCpb3.excluirContaPoupanca(707070);
+
+
+
+
+        CCorrente cCorrenteJP = new CCorrente();
+        cCorrenteJP.setCdConta(505050);
+        cCorrenteJP.setTxJuros(14.75);
+        cCorrenteJP.setTxIof(1.22);
+        cCorrenteJP.setTxIr(30.00);
+
+        CCorrenteDAO conexaoCCjp = new CCorrenteDAO(Conexao.abrirConexao());
+
+        conexaoCCjp.gravarConta(cCorrenteJP);
+//        conexaoCCjp.excluirContaCorrente(505050);
+
+
+        Movimentacao jPescola = new Movimentacao();
+        jPescola.setCategoria("Filhos");
+        jPescola.setData("Todo dia 10");
+        jPescola.setRecorrencia("Mensal");
+        jPescola.setDsMovimentacao("2x R$ 500,00");
+        jPescola.setCdMovimentacao(52);
+        jPescola.setCdConta(505050);
+        jPescola.setCdCliente(12345L);
+        jPescola.setValorMovimentacao(1000.00);
+
+        Movimentacao b3debitos = new Movimentacao();
+        b3debitos.setCategoria("Funcionarios");
+        b3debitos.setData("Todo dia 30");
+        b3debitos.setRecorrencia("Mensal");
+        b3debitos.setDsMovimentacao("Gerente Pj");
+        b3debitos.setCdConta(707070);
+        b3debitos.setCdCliente(1990);
+        b3debitos.setValorMovimentacao(9000.00);
+
+
+        MovimentacaoDAO movimentacaoConexao = new MovimentacaoDAO(Conexao.abrirConexao());
+
+        movimentacaoConexao.cadastrarMovimentacao(jPescola);
+        movimentacaoConexao.cadastrarMovimentacao(b3debitos);
+
+//        movimentacaoConexao.excluirMovimentacao(jPescola);
+//        movimentacaoConexao.excluirMovimentacao(b3debitos);
+
+
+
         //---------------------------------------------------------------------------------------------------------------------
 // Excluindo os dados do Data Base:
 
+//        MovimentacaoDAO movimentacaoConexao = new MovimentacaoDAO(Conexao.abrirConexao());
+//        movimentacaoConexao.excluirMovimentacao(jPescola);
+//        movimentacaoConexao.excluirMovimentacao(b3debitos);
+//
+//        CCorrenteDAO conexaoCCjp = new CCorrenteDAO(Conexao.abrirConexao());
+//        conexaoCCjp.excluirContaCorrente(505050);
+//
+//        CPoupancaDAO conexaoCpb3 = new CPoupancaDAO(Conexao.abrirConexao());
+//        conexaoCpb3.excluirContaPoupanca(707070);
+//
 //        ContaDAO conexaoContaDAO = new ContaDAO(Conexao.abrirConexao());
 //        conexaoContaDAO.excluirConta(505050);
 //        conexaoContaDAO.excluirConta(707070);

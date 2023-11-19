@@ -15,7 +15,8 @@ public class CCorrenteDAO {
     }
 
     public void gravarConta(CCorrente conta) {
-        String sql = "INSERT INTO T_CCORRENTE (T_CONTA_CD_CONTA, TX_JUROS, TX_IOF, TX_IR) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO T_CCORRENTE (CD_CONTA, TX_JUROS, TX_IOF, TX_IR) VALUES (?, ?, ?, ?)";
+
 
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
@@ -36,7 +37,7 @@ public class CCorrenteDAO {
 
     // Método para excluir uma conta corrente
     public boolean excluirContaCorrente(int cdConta) {
-        String sql = "DELETE FROM T_CCORRENTE WHERE T_CONTA_CD_CONTA = ?";
+        String sql = "DELETE FROM T_CCORRENTE WHERE CD_CONTA = ?";
 
         try (PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setInt(1, cdConta);
@@ -66,7 +67,7 @@ public class CCorrenteDAO {
 
     // Método genérico para atualizar campos de uma conta corrente
     private boolean atualizarCampoContaCorrente(int cdConta, String nomeCampo, double novoValor) {
-        String sql = "UPDATE T_CCORRENTE SET " + nomeCampo + " = ? WHERE T_CONTA_CD_CONTA = ?";
+        String sql = "UPDATE T_CCORRENTE SET " + nomeCampo + " = ? WHERE CD_CONTA = ?";
 
         try (PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setDouble(1, novoValor);

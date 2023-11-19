@@ -2,6 +2,7 @@ package br.com.fiap.fintech.model;
 
 public class CCorrente extends Conta {
 
+    private int cdConta;
     private double txJuros;
     private double txIof;
     private double txIr;
@@ -9,7 +10,8 @@ public class CCorrente extends Conta {
     public CCorrente() {
     }
 
-    public CCorrente(double txJuros, double txIof, double txIr) {
+    public CCorrente(int cdConta, double txJuros, double txIof, double txIr) {
+        this.cdConta = cdConta;
         this.txJuros = txJuros;
         this.txIof = txIof;
         this.txIr = txIr;
@@ -41,5 +43,16 @@ public class CCorrente extends Conta {
     public void setTxIr(double txIr) {
         this.txIr = txIr;
     }
-}
+
+    @Override
+    public int getCdConta() {
+        return cdConta;
+    }
+
+    @Override
+    public void setCdConta(int cdConta) {
+        this.cdConta = cdConta;
+    }
+
+} //Fim da classe
 

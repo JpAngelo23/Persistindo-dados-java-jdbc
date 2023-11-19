@@ -9,6 +9,10 @@ public class Conta {
     private String nrConta;
     private double valorSaldo;
 
+    public Conta() {
+    }
+
+
     //-------------------------------------------------------------------------------------------------------------------------------
     // Métodos Getters and Setters:
 
